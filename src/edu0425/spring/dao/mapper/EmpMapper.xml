@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu0425.spring.dao.mapper.EmpMapper">
+	<resultMap type="edu0425.spring.vo.EmpInfo" id="empInfoResult">
+		<id property="empno" column="empno"/>
+		<result property="ename" column="ename" />
+		<result property="job" column="job"/>
+		<result property="mgr" column="mgr"/>
+		<result property="hiredate" column="hiredate"/>
+		<result property="sal" column="sal"/>
+		<result property="deptno" column="deptno"/>
+	
+	</resultMap>
+	
+	<insert id="addEmp" keyProperty="empno" parameterType="edu0425.spring.vo.EmpInfo" useGeneratedKeys="true">
+		insert into emp(empno,ename,job,mgr,hiredate,sal,deptno) values(null,#{ename},#{job},#{mgr},#{hiredate},#{sal},#{deptno})
+	</insert>
+
+	<update id="updateEmp" parameterType="edu0425.spring.vo.EmpInfo">
+		update emp set ename = #{ename}, job = #{job}, mgr = #{mgr}, hiredate = #{hiredate}, sal = #{sal}, deptno = #{deptno} where empno = #{empno}
+	</update>
+
+</mapper>
