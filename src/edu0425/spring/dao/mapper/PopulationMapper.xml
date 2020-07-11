@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu0425.spring.dao.mapper.PopulationMapper">
+	<resultMap type="edu0425.spring.vo.PopulationInfo" id="PopulationInfoResult">
+		<id property="did" column="did"/>
+		<result property="dname" column="dname" />
+		<result property="ename" column="ename"/>
+		<result property="tpopu" column="tpopu"/>
+		<result property="ypopu" column="ypopu"/>
+		<result property="apopu" column="apopu"/>
+		<result property="opopu" column="opopu"/>
+		<result property="fpopu" column="fpopu"/>
+		<result property="ddpopu" column="ddpopu"/>
+		<result property="lbir" column="lbir"/>
+		<result property="death" column="death"/>
+		<result property="inmnum" column="inmnum"/>
+		<result property="outmnum" column="outmnum"/>
+		<result property="dtpopu" column="dtpopu"/>
+		<result property="hnum" column="hnum"/>
+		<result property="phnum" column="phnum"/>
+		<result property="nfnum" column="nfnum"/>
+		<result property="onehnum" column="onehnum"/>
+		<result property="onhnum" column="onhnum"/>
+		<result property="ochnum" column="ochnum"/>
+		<result property="oshnum" column="oshnum"/>
+		<result property="marriages" column="marriages"/>
+		<result property="divorces" column="divorces"/>
+		<result property="did2" column="did2"/>
+	</resultMap>
+	
+
+</mapper>
