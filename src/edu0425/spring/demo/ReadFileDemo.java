@@ -129,10 +129,6 @@ public class ReadFileDemo {
 			
 		}
 		out.flush();
-		out.close();
-				   
-			
+		out.close();		
 		}
-	
-
 }

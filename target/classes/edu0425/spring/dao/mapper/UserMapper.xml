@@ -23,5 +23,12 @@
 	left join sys_permissions d on c.pid = d.pid
 	where a.loginId = #{loginId}
 </select>
-
+	
+	<select id="getRoles" parameterType="String" resultType="String">
+		select c.role
+		from sys_users a   
+		left join sys_users_roles b on a.uid = b.uid
+		left join sys_roles c on b.rid =c.rid
+		where a.loginId = #{loginId}
+	</select>
 </mapper>

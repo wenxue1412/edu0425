@@ -3,25 +3,27 @@ package edu0425.spring.vo;
 import java.util.Date;
 
 public class UserInfo {
-	
+
 	private Integer uid;
-	
+
 	private String loginId;
-	
+
 	private String userName;
-	
+
 	private String password;
-	
+
 	private String email;
-	
+
 	private String phone;
-	
+
 	private Integer valid;
-	
+
 	private Date gmt_create;
-	
+
 	private Date gmt_modified;
-	
+
+	private Integer onOff;
+
 	public Integer getUid() {
 		return uid;
 	}
@@ -29,9 +31,6 @@ public class UserInfo {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-
-	
-	
 
 	public String getLoginId() {
 		return loginId;
@@ -104,7 +103,5 @@ public class UserInfo {
 	public void setOnOff(Integer onOff) {
 		this.onOff = onOff;
 	}
-
-	private Integer onOff;
 
 }
