@@ -5,16 +5,13 @@ public class Philosopher extends Thread{
 	
 	private String name[] = {"A","B","C","D"};
 	
-	private Chopstick left;
-	
-	private Chopstick right;
+	private Chopstick chop;
 	
 	private Integer thinkFactor;
 	
-	public Philosopher(int i,Chopstick left,Chopstick right) {
+	public Philosopher(int i,Chopstick chop) {
 		this.i = i;
-		this.left = left;
-		this.right = right;
+		this.chop = chop;
 	}
 	
 	private void think(int i) {
@@ -25,38 +22,36 @@ public class Philosopher extends Thread{
 			e.printStackTrace();
 		}
 	}
-	public void run() {
+	public synchronized void run() {
 		while(!Thread.interrupted()) {
 			System.out.println(name[i]+" feels hungry");
 			try {
-				right.take(i);
-				
+				chop.take(i);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(name[i]+" picks up "+ right.id[i]);
+			System.out.println(name[i]+" picks up "+ chop.id[i]);
 			try {
-				left.take((i+1)%4);
+				chop.take((i+1)%4);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(name[i]+" picks up "+ left.id[(i+1)%4]);
+			System.out.println(name[i]+" picks up "+ chop.id[(i+1)%4]);
 			System.out.println(name[i]+" is eating");
 			think(i);
-			right.drop(i);
-			System.out.println(name[i]+" puts "+ right.id[i]);
-			left.drop((i+1)%4);
-			System.out.println(name[i]+" puts "+ left.id[(i+1)%4]);
+			chop.drop(i);
+			System.out.println(name[i]+" puts "+ chop.id[i]);
+			chop.drop((i+1)%4);
+			System.out.println(name[i]+" puts "+ chop.id[(i+1)%4]);
 		}
 	}
 	public static void main(String[] args) {
-		Chopstick left = new Chopstick();
-		Chopstick right = new Chopstick();
-		new Philosopher(0, left, right).start();
-		new Philosopher(1, left, right).start();
-		new Philosopher(2, left, right).start();
-		new Philosopher(3, left, right).start();
+		Chopstick chop = new Chopstick();
+		new Philosopher(0, chop).start();
+		new Philosopher(1, chop).start();
+		new Philosopher(2, chop).start();
+		new Philosopher(3, chop).start();
 	}
 }
