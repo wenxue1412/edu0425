@@ -7,7 +7,7 @@ public class Philosopher extends Thread{
 	
 	private Chopstick chop;
 	
-	private Integer thinkFactor;
+	private Integer thinkFactor = 0;
 	
 	public Philosopher(int i,Chopstick chop) {
 		this.i = i;
@@ -21,6 +21,11 @@ public class Philosopher extends Thread{
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
+		thinkFactor++;
+		while(thinkFactor==2) {
+			interrupt();
+		}
+		
 	}
 	public synchronized void run() {
 		while(!Thread.interrupted()) {
