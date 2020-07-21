@@ -6,15 +6,21 @@ public class Chopstick extends Thread{
 	private boolean taken[] = {false,false,false,false};
 	
 	public synchronized void take(int i) throws InterruptedException {
-		while(taken[i] == true) {
+		while(getTaken()[i]){
 			wait();
 		}
-		taken[i] = true;
+		getTaken()[i] = true;
 	
 	}
 	public synchronized void drop(int i) {
-		taken[i]=false;
+		getTaken()[i]=false;
 		notifyAll();
+	}
+	public boolean[] getTaken() {
+		return taken;
+	}
+	public void setTaken(boolean taken[]) {
+		this.taken = taken;
 	}
 	
 }

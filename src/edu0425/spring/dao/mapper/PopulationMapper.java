@@ -21,13 +21,12 @@ public interface PopulationMapper {
 	@ResultMap("PopulationInfoResult")
 	List<PopulationInfo>getPopuPage(@Param("cursor")Integer cursor, @Param("offset")Integer offset);
 	
-	@Select ("select * from `2020-a` where did = #{did}")
+	@Select ("select * from `2020-a` where did like #{did}%")
 	@ResultMap("PopulationInfoResult")
-	PopulationInfo getPopuById(@Param("did")String did);
+	List<PopulationInfo> getPopuById(@Param("did")String did);
 	
 	@Select ("select * from `2020-a` where dname like '%#{dname}%'")
 	@ResultMap("PopulationInfoResult")
-	List<PopulationInfo> selectPopu(@Param("dname")String dname);
-	
+	List<PopulationInfo> getPopuByDname(@Param("dname")String dname);
 	
 }

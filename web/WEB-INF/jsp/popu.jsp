@@ -19,6 +19,10 @@
 	<div class="container">
 		<h1>Welcome to Population Page</h1>
 		<table class="table table-bordered">
+		<form action="search" method="post">
+  			First name: <input type="text" name="fname"><br>
+  			<input type="submit" value="提交">
+		</form>
 			<thead>
 				<tr>
 					<td>#</td>

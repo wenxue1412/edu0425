@@ -27,7 +27,7 @@ public class PopulationServiceImpl implements PopulationService{
 		return popuMapper.getPopulationList();
 	}
 	@Override
-	public PopulationInfo getPopuById(String did) {
+	public List<PopulationInfo> getPopuById(String did) {
 		return popuMapper.getPopuById(did);
 	}
 
@@ -50,11 +50,22 @@ public class PopulationServiceImpl implements PopulationService{
 		PaginationResult<List<PopulationInfo>> result = new PaginationResult<List<PopulationInfo>>(pagination,list);
 		return result;
 	}
-	
-	public List<PopulationInfo> selectPopu(String dname){
-		
-		
-		return popuMapper.selectPopu(dname);
+	@Override
+	public PaginationResult<List<PopulationInfo>> getPopuByDname(String dname, Integer pageIndex, Integer pageSize){
+		// TODO Auto-generated method stub
+		Pagination pagination = new Pagination(pageIndex,pageSize);
+		Integer totalCount = getPopuCount();
+		pagination.setTotalCount(totalCount);
+		List<PopulationInfo> list = popuMapper.getPopuByDname(dname);
+		for(int i = 0 ;i < list.size();i++) {
+			if(Integer.parseInt(list.get(i).getDid())<100) {
+			List<PopulationInfo> list2= popuMapper.getPopuById(list.get(i).getDid());
+			list.addAll(list2);
+			}
+		}
+		pagination.setCurrentPageCount(list.size());
+		PaginationResult<List<PopulationInfo>> result2 = new PaginationResult<List<PopulationInfo>>(pagination,list);
+		return result2;
 	}
 
 }
