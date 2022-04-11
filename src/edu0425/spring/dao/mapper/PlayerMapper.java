@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
-import com.alibaba.fastjson.JSONArray;
 
 import edu0425.spring.vo.ChartData;
 import edu0425.spring.vo.ClubInfo;

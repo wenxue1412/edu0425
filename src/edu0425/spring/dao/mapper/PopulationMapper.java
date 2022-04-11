@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
-import edu0425.common.page.PaginationResult;
-import edu0425.spring.vo.EmpInfo;
 import edu0425.spring.vo.PopulationInfo;
 
 public interface PopulationMapper {
@@ -21,12 +19,13 @@ public interface PopulationMapper {
 	@ResultMap("PopulationInfoResult")
 	List<PopulationInfo>getPopuPage(@Param("cursor")Integer cursor, @Param("offset")Integer offset);
 	
-	@Select ("select * from `2020-a` where did like #{did}%")
+	@Select ("select * from `2020-a` where did like #{did} '%' ")
 	@ResultMap("PopulationInfoResult")
-	List<PopulationInfo> getPopuById(@Param("did")String did);
+	List<PopulationInfo> getPopuListById(@Param("did")String did);
 	
-	@Select ("select * from `2020-a` where dname like '%#{dname}%'")
+	@Select ("select * from `2020-a` where dname like '%'#{dname}'%'")
 	@ResultMap("PopulationInfoResult")
-	List<PopulationInfo> getPopuByDname(@Param("dname")String dname);
+	List<PopulationInfo> getPopuListByName(@Param("dname")String dname);
+	
 	
 }

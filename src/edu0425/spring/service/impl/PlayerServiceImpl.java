@@ -15,7 +15,6 @@ import edu0425.spring.init.InitInfo;
 import edu0425.spring.service.PlayerService;
 import edu0425.spring.vo.ChartData;
 import edu0425.spring.vo.ClubInfo;
-import edu0425.spring.vo.DeptInfo;
 import edu0425.spring.vo.NationInfo;
 import edu0425.spring.vo.PlayerInfo;
 

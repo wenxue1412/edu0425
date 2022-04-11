@@ -6,7 +6,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ import edu0425.spring.service.UserService;
 import edu0425.spring.vo.LoginInfo;
 import edu0425.spring.vo.UserInfo;
 
-@Controller
+
 @RequestMapping("/")
 public class UserController {
 
@@ -41,44 +40,44 @@ public class UserController {
 	
 
 	public String login(LoginInfo user, HttpSession session, ModelMap modelMap) {
-		//todo 如果成功，跳转到index页面，
+		//todo 濡傛灉鎴愬姛锛岃烦杞埌index椤甸潰锛�
 		if(userService.loginValid(user, session)) {
 			return "redirect:player/index?pageIndex=1&pageSize=10";
 		}
 		
-		//否则返回登陆页，密码是空，显示账号或密码错误
+		//鍚﹀垯杩斿洖鐧婚檰椤碉紝瀵嗙爜鏄┖锛屾樉绀鸿处鍙锋垨瀵嗙爜閿欒
 		user.setPassword(null);
 		modelMap.put("user", user);
-		modelMap.put("msg", "账号或密码错误");
+		modelMap.put("msg", "璐﹀彿鎴栧瘑鐮侀敊璇�");
 		return "login";
 	}
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public String login2(LoginInfo user, HttpSession session, ModelMap modelMap) {
-		//获取当前登录用户的统一方法
+		//鑾峰彇褰撳墠鐧诲綍鐢ㄦ埛鐨勭粺涓�鏂规硶
 		Subject subject = SecurityUtils.getSubject();
-		//封装表单中提交的用户名和密码
+		//灏佽琛ㄥ崟涓彁浜ょ殑鐢ㄦ埛鍚嶅拰瀵嗙爜
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginId(),MD5Util.textToMD5U16(user.getPassword()),user.isRemember());
 		try {
-			//调用login方法，传入封装好的token（令牌）
+			//璋冪敤login鏂规硶锛屼紶鍏ュ皝瑁呭ソ鐨則oken锛堜护鐗岋級
 			subject.login(token);
-			//登录成功跳转：
+			//鐧诲綍鎴愬姛璺宠浆锛�
 			return "redirect:player/index?pageIndex=1&pageSize=10";
 
 		}catch(Exception e){
-			//否则返回登陆页，密码是空，显示账号或密码错误
+			//鍚﹀垯杩斿洖鐧婚檰椤碉紝瀵嗙爜鏄┖锛屾樉绀鸿处鍙锋垨瀵嗙爜閿欒
 			user.setPassword(null);
 			modelMap.put("user", user);
-			modelMap.put("msg", "账号或密码错误");
+			modelMap.put("msg", "璐﹀彿鎴栧瘑鐮侀敊璇�");
 			return "login";
 		}
 	
 	}
-	//RESTFUL API 接口，返回json数据
+	//RESTFUL API 鎺ュ彛锛岃繑鍥瀓son鏁版嵁
 	@RequestMapping(value="/permission/{loginId}", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONArray getPermissions(@PathVariable String loginId) {
-		//todo 根据loginId查询这个用户的所以权限关键字。
+		//todo 鏍规嵁loginId鏌ヨ杩欎釜鐢ㄦ埛鐨勬墍浠ユ潈闄愬叧閿瓧銆�
 		
 		return userService.getPermissions(loginId);
 	}

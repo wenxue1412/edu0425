@@ -9,11 +9,11 @@ public interface PopulationService {
 	
 	List<PopulationInfo>getPopulationList();
 
-	List<PopulationInfo> getPopuById(String did);
-
     Integer getPopuCount();
     
     PaginationResult<List<PopulationInfo>> getPopuPage(Integer pageIndex,Integer pageSize);
 
-	PaginationResult<List<PopulationInfo>> getPopuByDname(String dname, Integer pageIndex,Integer pageSize);
+	PaginationResult<List<PopulationInfo>> getPopuPageByDname(String dname, Integer pageIndex,Integer pageSize);
+	
+	List<PopulationInfo> getPopuListById(String did);
 }

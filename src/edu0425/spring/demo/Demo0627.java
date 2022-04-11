@@ -11,7 +11,7 @@ public class Demo0627 {
 		int[] c = { 3, 5, 7, 8 };
 		getTwoSum(c, 15);
 		String edu = "13+52-*6/";
-		System.out.println(edu + "的结果是：" + rpn(edu));
+		System.out.println(edu + "鐨勭粨鏋滄槸锛�" + rpn(edu));
 		System.out.println(calcT(1, 5));
 		System.out.println(calcT(2, 5));
 		System.out.println(calcT(3, 5));
@@ -23,9 +23,9 @@ public class Demo0627 {
 		qd.enqueue(33);
 		qd.enqueue(5);
 		qd.print();
-		System.out.println("出队："+qd.dequeue());
+		System.out.println("鍑洪槦锛�"+qd.dequeue());
 		qd.print();
-		System.out.println("出队："+qd.dequeue());
+		System.out.println("鍑洪槦锛�"+qd.dequeue());
 		qd.print();
 		NodeDemo node = new NodeDemo(5);
 		node.insert(10);
@@ -34,7 +34,7 @@ public class Demo0627 {
 		node.insert(12);
 		node.insert(3);
 		node.insert(8);
-		//中序遍历
+		//涓簭閬嶅巻
 		node.inorder();
 	}
 
@@ -149,7 +149,7 @@ public class Demo0627 {
 		return cnt;
 
 	}
-	private static int calcT2(int n , int m) {
+	/*private static int calcT2(int n , int m) {
 		if(n<0||m<0) {
 			return 0;
 		}
@@ -163,6 +163,6 @@ public class Demo0627 {
 			return calcT2(n-1,m);
 		}
 		return cnt;
-	}
+	}*/
 	
 }

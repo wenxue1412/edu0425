@@ -121,14 +121,14 @@
 		//ajax可以去请求服务端口，并且接收返回值，修改页面值
 		$.ajax({
 			url : "page?pageIndex="+pageIndex+"&pageSize="+pageSize,
-			success : function(result){//ajax成功返回result
+			success : function(result2){//ajax成功返回result
 				//alert(result.pagination.totalCountPage);
 				var totalCountPage=result.pagination.totalCountPage;
 				initPage(pageIndex,pageSize,totalCountPage);
 				//1.获取模板
 				jsRenderTpl = $.templates('#popu_table');
 				//2.模板与数据融合
-				finalTpl = jsRenderTpl(result);
+				finalTpl = jsRenderTpl(result2);
 				//3.加载到HTML里
 				$("#popu_tbody").html(finalTpl);
 			}
@@ -176,5 +176,6 @@
 		}
 	}
 	</script>
+	
 </body>
 </html>

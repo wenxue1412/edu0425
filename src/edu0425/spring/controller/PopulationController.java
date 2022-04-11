@@ -42,7 +42,7 @@ public class PopulationController {
 		String dname = request.getParameter("fname");
 		modelMap.put("pageIndex", pageIndex);
 		modelMap.put("pageSize", pageSize);
-		popuService.getPopuByDname(dname, pageIndex, pageSize);
+		popuService.getPopuPageByDname(dname, pageIndex, pageSize);
 		return "search";
 	}
 }

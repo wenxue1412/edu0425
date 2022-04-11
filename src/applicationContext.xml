@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
+	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
+         
+     
+     
 	<!-- 配置spring注解扫描路径 -->
 	<context:component-scan
-		base-package="edu0425.spring" />
-	<!-- 加载本地src下配置文件 -->
+		base-package="edu0425" > 
+		</context:component-scan>
+	<!-- 加载本地src下配置文件 
+	    该标签为自定义标签，通过标签名会交给PropertyPlaceholderBeanDefinitionParser去解析。  
+	    之后会被spring实例化为一个叫PropertySourcesPlaceholderConfigurer的bean对象
+	-->
 	<context:property-placeholder
 		location="classpath:conf.properties" />
+
 		
 		<!--1 配置C3P0数据源 -->
 	<bean id="datasource"
@@ -41,10 +53,10 @@
 		<!-- 数据源 -->
 		<property name="dataSource" ref="datasource"></property>
 		<!-- SQL映射文件路径 -->
+		<!-- XMLMapperBuilder对象来解析路径，加入到配置configuation中，同时再为他绑定一个mapper文件 -->
 		<property name="mapperLocations"
 			value="classpath:edu0425/spring/dao/mapper/*.xml"></property>
 	</bean>
-
 	<!--3 自动扫描对象关系映射 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage"
@@ -82,11 +94,14 @@
 			<value>
 				/login=anon
 				/admin/**=authc,roles[admin]
-				/dept/**=perms[dept.select]
+				<!-- /dept/**=perms[dept.select] -->
 			</value>
 		</property>
 	</bean>
 	
 	<!-- shiro.4保证实现了shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
+	
+	<!-- 开启基于Aspectj切面的注解处理器 -->
+	<aop:aspectj-autoproxy/> 
 </beans>

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -86,7 +85,7 @@ public class ReadFileDemo {
 			f1.add(str[0]);
 			f2.add(str[1]);
 			f3.add(str[2]);
-			i++;
+			i = i++;
 		}
 		buffer.close();
 		reader.close();
@@ -101,10 +100,11 @@ public class ReadFileDemo {
 			g1.add(str2[0]);
 			g2.add(str2[1]);
 			g3.add(str2[2]);
-			i++;
+			i = i++;
 		}
 		buffer.close();
 		reader.close();
+		buffer2.close();
 		fin.close();
 		
 		File writeName = new File(filepath3);

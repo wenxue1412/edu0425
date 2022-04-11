@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>edu0425</display-name>
+  <!-- <display-name>edu0425</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -24,60 +24,69 @@
   <servlet-mapping>
     <servlet-name>emp</servlet-name>
     <url-pattern>/demo/emp.html</url-pattern>
-  </servlet-mapping>
-  <!-- 加载spring配制文件 -->
+  </servlet-mapping> -->
   <listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>  
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 将spring的配置文件配置为一个全局变量，同时使用监听器进行加载  -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>  
             classpath:applicationContext.xml
         </param-value>
-	</context-param>
-	
-	<!-- springMVC 前端控制器 -->
-	<!-- 如果没有配置<init-param></init-param> 那么spring容器会自动去WEB-INF目录下扫描一个叫"servlet-name"-servlet.xml的配置文件来加载springmvc容器. -->
-	<servlet>
-		<servlet-name>edu</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>edu</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
-	<!-- shiro过滤器定义 -->
-	<filter>
-		<filter-name>shiroFilter</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-		<init-param>
-			<param-name>targetFilterLifecycle</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>shiroFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
-	<!-- 解决表单提交的乱码问题 -->
-	<filter>
-		<filter-name>characterEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>characterEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	
+  </context-param>
+  <servlet>
+    <servlet-name>edu</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>throwExceptionIfNoHandlerFound</param-name>
+      <!-- 意义 
+      		找不到对应的handler的话是否报错，ture则报NoHandlerFoundException的错误到控制台，
+      		否则返回SC_NOT_FOUND的错误给response到页面，默认为false。
+      -->
+      <param-value>false</param-value>
+    </init-param>
+    <!-- 数字的意义 servlet的加载顺序-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>edu</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- <filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+  <filter>
+  <filter-name>filter</filter-name>
+        <filter-class>edu0425.spring.filter.GenericEncodingFilter </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping> 
 </web-app>

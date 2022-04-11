@@ -1,10 +1,18 @@
 package edu0425.spring.vo;
 
+
+import edu0425.spring.interfaces.NoChinese;
+import edu0425.spring.interfaces.NotEmpty;
+import edu0425.spring.interfaces.NotNull2;
+
 public class DeptInfo {
-private Integer deptno;
 	
+	private Integer deptno;
+	@NotEmpty(msg = "部门名称不能为空")
+	//@NotNull2(message = "部门名称不能为空", value = "1")
 	private String dname;
-	
+	@NotNull2(message = "所在地不能为空", value = "1")
+	@NoChinese(message = "所在地不能有中文")
 	private String loc;
 
 	public Integer getDeptno() {
@@ -37,7 +45,7 @@ private Integer deptno;
 		this.dname = dname;
 		this.loc = loc;
 	}
-    //无参构造函数
+    //鏃犲弬鏋勯�犲嚱鏁�
 	public DeptInfo() {
 	}
 

@@ -14,6 +14,10 @@ import edu0425.spring.vo.DeptInfo;
 
 public class DeptServlet extends HttpServlet{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//1.实现Servelet接口
 	//2.继承GenericServlet实现servlet方法
 	//3继承HttpServelet 实现 doget dopost

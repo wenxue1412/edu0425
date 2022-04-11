@@ -12,6 +12,10 @@ import edu0425.spring.service.impl.EmpServiceImpl;
 import edu0425.spring.vo.EmpInfo;
 
 public class EmpServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EmpService empService;
 //http://localhost:8080/edu025/demo/dept.html
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{

@@ -18,6 +18,7 @@
 <body>
 	<div class="container">
 		<h1>Welcome to Department Page</h1>
+		<div>${errMsg}</div>
 		<form:form action="add" method="post" modelAttribute="dept">
 			<div class="form-group">
 				<label>部门编号</label>
@@ -25,7 +26,7 @@
 			</div>
 			<div class="form-group">
 				<label>部门名称</label>
-				<form:input path="dname"/>
+				<form:input type="text" path="dname" value=""/>
 			</div>
 			<div class="form-group">
 				<label>所在地</label>
@@ -33,10 +34,11 @@
 			</div>
 			<form:button>添加部门</form:button>
 		</form:form>
-		
+
 	</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/jquery-3.2.1.min.js"></script>
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 
 import edu0425.common.page.Pagination;
 import edu0425.common.page.PaginationResult;
-import edu0425.spring.dao.DeptDAO;
 import edu0425.spring.dao.mapper.DeptMapper;
 import edu0425.spring.service.DeptService;
 import edu0425.spring.vo.DeptInfo;
 @Component//相当于 bean id 
 public class DeptServiceImpl implements DeptService{
 	
-	private DeptDAO deptDAO;
+	//private DeptDAO deptDAO;
 	@Autowired
 	private DeptMapper deptMapper;
 

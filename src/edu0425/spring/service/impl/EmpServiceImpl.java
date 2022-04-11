@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import edu0425.common.page.Pagination;
 import edu0425.common.page.PaginationResult;
-import edu0425.spring.dao.EmpDAO;
 import edu0425.spring.dao.mapper.EmpMapper;
 import edu0425.spring.service.EmpService;
 import edu0425.spring.vo.EmpInfo;
@@ -15,7 +14,7 @@ import edu0425.spring.vo.EmpInfo;
 @Component
 public class EmpServiceImpl implements EmpService {
 
-	private EmpDAO empDAO;
+	//private EmpDAO empDAO;
 	@Autowired
 	private EmpMapper empMapper;
 

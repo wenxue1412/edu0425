@@ -1,5 +1,25 @@
 id	name	email
-491964	夏雨	xiayu571@gmail.com
-492310	王小波	xiaobo66@163.com
-495566	李银河 	liyh0919@yahoo.com
+491964	澶忛洦	xiayu571@gmail.com
+492310	鐜嬪皬娉�	xiaobo66@163.com
+495566	鏉庨摱娌� 	liyh0919@yahoo.com
 500528	DD	diandian@cat.com
+
+自己实现
+@Component
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyAnno {
+    @AliasFor(annotation = Component.class)
+    String value() default "";
+}
+1
+2
+3
+4
+5
+6
+7
+测试
+————————————————
+版权声明：本文为CSDN博主「LcShadow」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/lclovehlm/article/details/106891270
