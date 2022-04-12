@@ -11,7 +11,6 @@ import com.alibaba.fastjson.JSONObject;
 import edu0425.common.page.Pagination;
 import edu0425.common.page.PaginationResult;
 import edu0425.spring.dao.mapper.PlayerMapper;
-import edu0425.spring.init.InitInfo;
 import edu0425.spring.service.PlayerService;
 import edu0425.spring.vo.ChartData;
 import edu0425.spring.vo.ClubInfo;
@@ -20,7 +19,7 @@ import edu0425.spring.vo.PlayerInfo;
 
 @Component
 public class PlayerServiceImpl implements PlayerService {
-	
+
 	@Autowired
 	private PlayerMapper playerMapper;
 	@Override
@@ -34,17 +33,17 @@ public class PlayerServiceImpl implements PlayerService {
 		Pagination pagination = new Pagination(pageIndex,pageSize);
 		Integer totalCount = getTotalCount();
 		pagination.setTotalCount(totalCount);
-		
+
 		List<PlayerInfo> list = playerMapper.getPlayers(pagination.getCursor(), pagination.getOffset());
 		for(PlayerInfo player :list) {
 		//	player.setClub(playerMapper.getClubById(player.getCid()));
 		//	player.setNation(playerMapper.getNationById(player.getNid()));
-		player.setClub(InitInfo.club.get(player.getCid()));
-		player.setNation(InitInfo.nation.get(player.getNid()));
+//		player.setClub(InitInfo.club.get(player.getCid()));
+//		player.setNation(InitInfo.nation.get(player.getNid()));
 		}
-		
+
 		pagination.setCurrentPageCount(list.size());
-		
+
 		PaginationResult<List<PlayerInfo>> result = new PaginationResult<List<PlayerInfo>>(pagination,list);
 		return result;
 	}
@@ -97,7 +96,7 @@ public class PlayerServiceImpl implements PlayerService {
 			JSONArray json= new JSONArray();
 			json.add( data.getKey());
 			json.add( data.getValue());
-			
+
 			array.add(json);
 		}
 		return array;
@@ -108,13 +107,13 @@ public class PlayerServiceImpl implements PlayerService {
 		List<ChartData> list = playerMapper.getAvgOfOverallByNation();
 		JSONArray xAxis = new JSONArray();
 		JSONArray series = new JSONArray();
-		for(ChartData data : list) { 
+		for(ChartData data : list) {
 			xAxis.add( data.getKey());
 			series.add( data.getValue());
-		}	
+		}
 			result.put("xAxis", xAxis);
 			result.put("series",series);
-		
+
 		return result;
 	}
 }
