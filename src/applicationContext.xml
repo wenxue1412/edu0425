@@ -32,7 +32,7 @@
 		<!--驱动类名 -->
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<!--  -->
-		<property name="jdbcUrl" value="jdbc:mysql://120.27.23.15:3306/edu20200415?useUnicode=true" />
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/edu20200415?useUnicode=true" />
 		<!-- 用户名 -->
 		<property name="user" value="root" />
 		<!-- 密码 -->
