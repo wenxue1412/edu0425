@@ -25,6 +25,17 @@
         </configuration>
       </plugin>
     </plugins>
+<resources>
+			<resource>
+				<directory>src</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/resources</directory>
+			</resource>
+		</resources>
   </build>
 
 
